@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassTrix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="bg-gray-100 h-14 flex items-center justify-start p-5 border-b">
+        <h1 class="text-2xl font-bold text-center">PassTrix</h1>
+    </div>
+
+    <div class="container p-5 max-w-lg mx-auto">
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Username:</label>
+                <input type="text" id="username" name="username"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required>
+                <p id="error-message" class="error-message text-red-500 text-sm font-medium mt-1"></p>
+            </div>
+            <button type="submit" id="nextButton"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 w-full mt-5 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Next</button>
+        </form>
+    </div>
+
+    <script>
+        const nextButton = document.getElementById('nextButton');
+        nextButton.addEventListener('click', () => {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const localUsername = localStorage.getItem(`${username}`);
+            if (!localUsername) {
+                document.getElementById('error-message').textContent = "User is not registered, going back to index page.";
+                nextButton.style.display = 'none';
+                // redirect to index.html after 3 seconds
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+
+                return;
+            }
+            sessionStorage.setItem('username', username);
+
+            // Redirect to password.html
+            window.location.href = 'password.html';
+        });
+    </script>
+</body>
+
+</html>

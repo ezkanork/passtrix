@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassTrix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="bg-gray-100 h-14 flex items-center justify-start p-5 border-b">
+        <h1 class="text-2xl font-bold text-center">PassTrix</h1>
+    </div>
+    <img src="https://i.gifer.com/fetch/w300-preview/7c/7c0ba8f4a97cc35d0e0034a7ae2d1e03.gif" alt="" class="h-screen w-screen fixed top-0 left-0 right-0 bottom-0 overflow-hidden object-cover">
+
+    <div class="fixed z-100 left-1/2 bottom-4 -translate-x-1/2">
+        <div class="container p-5 max-w-lg mx-auto flex flex-col justify-center items-center">
+            <h1 class="text-2xl font-bold text-center text-white mt-5">Congratulations!<br>Access Granted ✅</h1>
+            <button id="finishButton"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 w-full max-w-[200px] mt-5 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Finish</button>
+        </div>
+    </div>
+
+    <script>
+        const finishButton = document.getElementById('finishButton');
+        finishButton.addEventListener('click', () => {
+            // Redirect to index.html
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+
+</html>

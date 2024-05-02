@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassTrix</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="bg-gray-100 h-14 flex items-center justify-start p-5 border-b">
+        <h1 class="text-2xl font-bold text-center">PassTrix</h1>
+    </div>
+
+    <div class="container p-5 max-w-lg mx-auto">
+        <h1 class="text-lg font-medium text-center mt-5">Create new user</h1>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Username:</label>
+                <input type="text" id="username" name="username"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required>
+            </div>
+            <div class="form-group mt-5">
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password:</label>
+                <input type="text" id="password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    minlength="4" maxlength="4" pattern="[A-Za-z0-9]{4}" required />
+            </div>
+            <button type="submit"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 w-full mt-5 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit</button>
+            <p id="error-message" class="error-message"></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Check if password length is exactly 4 and contains only (A-Z) and (0-9)
+            const passwordRegex = /^[A-Za-z0-9]{4}$/;
+            if (!passwordRegex.test(password)) {
+                document.getElementById('error-message').textContent = "Password must be exactly 4 characters long and contain only letters (A-Z) and numbers (0-9).";
+                return;
+            }
+            
+            localStorage.setItem(`${username}`, password.toUpperCase());
+
+            // Redirect to home page upon successful login
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+
+</html>
